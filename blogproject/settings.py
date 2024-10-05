@@ -37,7 +37,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", 'fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://git.heroku.com/focushub.git',]
 
 
 # Application definition
@@ -150,7 +150,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'CLOUDINARY_URL=cloudinary://<API_KEY>:<API_SECRET>@CLOUD_NAME'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
