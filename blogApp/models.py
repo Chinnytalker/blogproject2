@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from cloudinary.models import CloudinaryField
 
 
 
@@ -16,7 +17,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField()
+    image = CloudinaryField('image')
     body = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
