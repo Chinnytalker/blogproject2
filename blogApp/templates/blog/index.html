@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+ {% block page_title %} FocusHub {% endblock page_title %}
+
+
+{% block content %}
+
+<div class="row">
+    <h2>trending post</h2>
+    {% for post in trending_posts %}
+    <div class="col-md-4 mb-3">
+        <div class="card text-bg-dark">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="card-img">
+            {% else %}
+            <p>No Image</p>
+            {% endif %}
+            <div class="card-img-overlay">
+                <h5 class="card-title" style="color: white;"><a href="{% url 'details' post.pk %}" style="text-decoration: none; color:white;">{{ post.title }}</a></h5>
+                <p class="card-text" style="color: #323232;"><a href="{% url 'details' post.pk %}" style="text-decoration:none; color:#323232">{{ post.body | truncatewords:20 }}</a></p>
+                <p class="card-text" style="color: #323232;"><small>{{ post.date_created }}</small></p>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% block posts %}
+{% for post in posts %}
+<div class="card mb-4" style="max-width: 100%;">
+  <div class="row g-0">
+    <div class="col-md-4">
+          {% if post.image %}
+<img src="{{ post.image.url }}"  class="img-fluid rounded-start"  alt="{{ post.title }}">
+{% else %}
+<p>NO image</p>
+{% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title" style="color: #323232;">{{ post.title }}</h5>
+        <p class="card-text"><small>
+    {{ post.date_created.date }} | Categories:
+    {% for category in post.categories.all %}
+    <a href="{% url 'category' category.name %}" style="text-decoration: none; color: #0000ff">
+        {{ category.name }}
+    </a> | by {{ post.updated_by }}
+    {% endfor %}
+</small></p>
+        <p class="card-text" style="color:#323232;"><small class="text-body-secondary">{{ post.body | slice:":400" }}...</small></p>
+          <a href="{% url 'details' post.pk %}" class="btn btn-primary">Read more...</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock posts %}
+
+
+
+<nav aria-label="...">
+    <ul class="pagination">
+        {% if posts.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1">First</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Previous</span>
+        </li>
+        {% endif %}
+        {% for num in posts.paginator.page_range %}
+        <li class="page-item" {% if posts.number == num %} active {% endif %}><a class="page-link"
+                                                                                href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+        {% if post.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page=={{ posts.next_page_number }}">Next</a>
+        </li>
+        <li class="page-item">
+            <a href="?page=={{ posts.paginator.num_pages }}" class="page-link">Last</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Next</span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock content %}
