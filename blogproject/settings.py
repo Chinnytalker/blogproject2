@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogApp.apps.BlogappConfig',
     'cloudinary_storage',
+    'cloudinary',
 
 ]
 
@@ -150,7 +151,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = 'https://res.CLOUDINARY_URL=cloudinary://<API_KEY>:<API_SECRET>@CLOUD_NAME/'
+MEDIA_URL = 'https://res.cloudinary.com/dseh4nwkz/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
