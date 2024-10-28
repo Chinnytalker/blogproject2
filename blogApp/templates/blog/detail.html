@@ -8,7 +8,7 @@
 {% block content %}
 <div class="card mb-3">
     {% if post.image %}
-<img src="{{ post.image.url }}" class="img-fluid card-img-top" style="width: 100%;" alt="{{ post.title }}">
+<img src="{{ post.image.url | add: 'c_fill,w_600,h_400' }}" class="img-fluid card-img-top" style="width: 100%; height: auto;" alt="{{ post.title }}">
 {% else %}
 <p>NO image</p>
 {% endif %}
