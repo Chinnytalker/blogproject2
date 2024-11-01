@@ -18,7 +18,7 @@
             {% endif %}
             <div class="card-img-overlay">
                 <h5 class="card-title" style="color: white;"><a href="{% url 'details' post.pk %}" style="text-decoration: none; color:white;">{{ post.title }}</a></h5>
-                <p class="card-text" style="color: #323232;"><a href="{% url 'details' post.pk %}" style="text-decoration:none; color:#323232">{{ post.body | truncatewords:20 }}</a></p>
+                <p class="card-text" style="color: #323232;"><a href="{% url 'details' post.pk %}" style="text-decoration:none; color:#323232">{{ post.body | truncatewords:10 }}</a></p>
                 <p class="card-text" style="color: #323232;"><small>{{ post.date_created }}</small></p>
             </div>
 
