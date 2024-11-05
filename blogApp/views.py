@@ -10,7 +10,7 @@ from django.conf import settings
 
 def blog_index(request):
     post_list = Post.objects.all().order_by("-date_created")
-    trending_posts = Post.objects.order_by('-views')[:3]
+    trending_posts = Post.objects.order_by('-views')[:5]
     paginator = Paginator(post_list, 15)
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)
