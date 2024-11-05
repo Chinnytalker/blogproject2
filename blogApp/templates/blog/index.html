@@ -5,27 +5,45 @@
 
 
 {% block content %}
-
-<div class="row">
-    <h2>trending post</h2>
-    {% for post in trending_posts %}
-    <div class="col-md-4 mb-3">
-        <div class="card text-bg-dark">
+<section class="trending-posts">
+    <h3>Trending Posts</h3>
+    <div class="trending-slider">
+        {% for post in trending_posts %}
+        <div class="post-slide">
             {% if post.image %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="card-img">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
             {% else %}
             <p>No Image</p>
             {% endif %}
-            <div class="card-img-overlay">
-                <h5 class="card-title" style="color: white;"><a href="{% url 'details' post.pk %}" style="text-decoration: none; color:white;">{{ post.title }}</a></h5>
-                <p class="card-text" style="color: #323232;"><a href="{% url 'details' post.pk %}" style="text-decoration:none; color:#323232">{{ post.body | truncatewords:10 }}</a></p>
-                <p class="card-text" style="color: #323232;"><small>{{ post.date_created }}</small></p>
-            </div>
-
+            <h4><a href="{% url 'details' post.pk %}">{{ post.title }}</a></h4>
+            <p><a href="{% url 'details' post.pk %}">{{ post.body | truncatewords:10 }}</a></p>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+</section>
+
+
+
+<!--<div class="row">-->
+<!--    <h2>trending post</h2>-->
+<!--    {% for post in trending_posts %}-->
+<!--    <div class="col-md-4 mb-3">-->
+<!--        <div class="card text-bg-dark">-->
+<!--            {% if post.image %}-->
+<!--            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="card-img">-->
+<!--            {% else %}-->
+<!--            <p>No Image</p>-->
+<!--            {% endif %}-->
+<!--            <div class="card-img-overlay">-->
+<!--                <h5 class="card-title" style="color: white;"><a href="{% url 'details' post.pk %}" style="text-decoration: none; color:white;">{{ post.title }}</a></h5>-->
+<!--                <p class="card-text" style="color: #323232;"><a href="{% url 'details' post.pk %}" style="text-decoration:none; color:#323232">{{ post.body | truncatewords:10 }}</a></p>-->
+<!--                <p class="card-text" style="color: #323232;"><small>{{ post.date_created }}</small></p>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--</div>-->
 
 
 {% block posts %}
