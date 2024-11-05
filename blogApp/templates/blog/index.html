@@ -11,7 +11,7 @@
         {% for post in trending_posts %}
         <div class="post-slide" style="padding:20px; border:1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
             {% if post.image %}
-            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+            <img src="{{ post.image.url }}" style="width: auto; height: auto;" alt="{{ post.title }}" class="post-image">
             {% else %}
             <p>No Image</p>
             {% endif %}
